@@ -1,36 +1,36 @@
 class Board():
     def __init__(self):
-        self.boxes = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+        self.cells = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
     def display(self):
-        print(" %s | %s | %s " %(self.boxes[0], self.boxes[1], self.boxes[2]))
+        print(" %s | %s | %s " %(self.cells[0], self.cells[1], self.cells[2]))
         print("______________")
-        print(" %s | %s | %s " % (self.boxes[3], self.boxes[4], self.boxes[5]))
+        print(" %s | %s | %s " % (self.cells[3], self.cells[4], self.cells[5]))
         print("______________")
-        print(" %s | %s | %s " % (self.boxes[6], self.boxes[7], self.boxes[8]))
+        print(" %s | %s | %s " % (self.cells[6], self.cells[7], self.cells[8]))
 
     def checkWinner(self, player):
-        if self.cells[0] == player and self.cells[1] == player and self.cells[2] == player
+        if self.cells[0] == player and self.cells[1] == player and self.cells[2] == player:
             return True
-        if self.cells[3] == player and self.cells[4] == player and self.cells[5] == player
+        if self.cells[3] == player and self.cells[4] == player and self.cells[5] == player:
             return True
-        if self.cells[6] == player and self.cells[7] == player and self.cells[8] == player
+        if self.cells[6] == player and self.cells[7] == player and self.cells[8] == player:
             return True
-        if self.cells[0] == player and self.cells[3] == player and self.cells[6] == player
+        if self.cells[0] == player and self.cells[3] == player and self.cells[6] == player:
             return True
-        if self.cells[1] == player and self.cells[4] == player and self.cells[7] == player
+        if self.cells[1] == player and self.cells[4] == player and self.cells[7] == player:
             return True
-        if self.cells[2] == player and self.cells[5] == player and self.cells[8] == player
+        if self.cells[2] == player and self.cells[5] == player and self.cells[8] == player:
             return True
-        if self.cells[0] == player and self.cells[4] == player and self.cells[8] == player
+        if self.cells[0] == player and self.cells[4] == player and self.cells[8] == player:
             return True
-        if self.cells[2] == player and self.cells[4] == player and self.cells[6] == player
+        if self.cells[2] == player and self.cells[4] == player and self.cells[6] == player:
             return True
         return False
 
     def checkTie(self):
         used_cells = 0
-        for cell in self-cells:
+        for cell in self.cells:
             if cell != " ":
                 used_cells += 1
             if used_cells == 9:
@@ -46,7 +46,7 @@ bd = Board()
 
 def print_rules():
     print("Here are the rules for Tic-Tac-Toe:")
-    print("First player to move is X and the other player is O. Take turns choosing squares to place your markers.")
+    print("You are X and the other player is O. Take turns choosing squares to place your markers.")
     print("The goal of the game is to get three squares in the same row, column, or diagonal.")
     print("The game ends when a player has three squares in the same row, column, or diagonal or when all nine squares of the grid are full. Ties occur when neither player has three squares in the same row, column, or diagonal.")
 
@@ -62,22 +62,29 @@ def playAgain():
     print('Would you like to play again? (y or n)')
     return input().lower().startswith('y')
 
+firstTime = True
 while True:
+    if firstTime:
+        print_rules()
+        firstTime=False
+    bd.display()
 
-    print_rules()
+#assign player to be X or O
 
 #ask for moves & change the board for each player
     moveX = getMove("X")
     bd.update("X", moveX)
 
+    bd.display()
     moveO = getMove("O")
     bd.update("O", moveO)
 
 #Check if O is winner
     if bd.checkWinner("O"):
         print("\nO is the winner!\n")
-        if play_again == "y":
+        if playAgain():
             bd.reset()
+            firstTime=True
             continue
         else:
             break
@@ -85,8 +92,9 @@ while True:
 #Check if X is winner
     if bd.checkWinner("X"):
         print("\nX is the winner!\n")
-        if play_again == "y":
+        if playAgain():
             bd.reset()
+            firstTime = True
             continue
         else:
             break
@@ -94,8 +102,9 @@ while True:
 #Check for a tie
     if bd.checkTie():
         print("\nYou tied!\n")
-        if play_again == "y":
+        if playAgain():
             bd.reset()
+            firstTime = True
             continue
         else:
             break
