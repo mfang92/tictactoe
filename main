@@ -33,10 +33,13 @@ class Board():
         for cell in self-cells:
             if cell != " ":
                 used_cells += 1
-             if used_cells == 9
+            if used_cells == 9:
                 return True
 
-     def reset(self):
+    def update(self, player, cell):
+        self.cells[cell] = player
+
+    def reset(self):
         self.cells = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
 bd = Board()
@@ -52,7 +55,7 @@ def getMove(player):
     while move not in '0 1 2 3 4 5 6 7 8'.split():
         print("Where would you like to move, %s" %(player))
         move = input()
-    return int(move)-1
+    return int(move)
 
 def playAgain():
     # asks if the player wants to play again
@@ -65,31 +68,36 @@ while True:
 
 #assign player to be X or O
 
-#
+#ask for moves & change the board for each player
+    moveX = getMove("X")
+    bd.update("X", moveX)
+
+    moveO = getMove("O")
+    bd.update("O", moveO)
 
 #Check if O is winner
     if bd.checkWinner("O"):
-        print("\nO is the winner!\n"
-        if play_again = "y":
+        print("\nO is the winner!\n")
+        if play_again == "y":
             bd.reset()
             continue
-         else:
+        else:
             break
 
 #Check if X is winner
     if bd.checkWinner("X"):
-        print("\nX is the winner!\n"
-        if play_again = "y":
+        print("\nX is the winner!\n")
+        if play_again == "y":
             bd.reset()
             continue
-         else:
+        else:
             break
 
 #Check for a tie
     if bd.checkTie():
         print("\nYou tied!\n")
-        if play_again = "y":
+        if play_again == "y":
             bd.reset()
             continue
-         else:
+        else:
             break
