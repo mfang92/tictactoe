@@ -1,0 +1,10 @@
+class Board():
+    def __init__(self):
+        self.boxes = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
+    def display(self):
+        print(" %s | %s | %s " %(self.boxes[0], self.boxes[1], self.boxes[2]))
+        print("___________")
+        print(" %s | %s | %s " % (self.boxes[3], self.boxes[4], self.boxes[5]))
+        print("___________")
+        print(" %s | %s | %s " % (self.boxes[6], self.boxes[7], self.boxes[8]))
