@@ -28,16 +28,28 @@ class Board():
             return True
         return False
 
+    def checkTie(self):
+        used_cells = 0
+        for cell in self-cells:
+            if cell != " ":
+                used_cells += 1
+             if used_cells == 9
+                return True
+
+     def reset(self):
+        self.cells = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+
 bd = Board()
 
-def printRules():
+def print_rules():
+    print("Here are the rules for Tic-Tac-Toe:")
     print("You are X and the other player is O. Take turns choosing squares to place your markers.")
     print("The goal of the game is to get three squares in the same row, column, or diagonal.")
     print("The game ends when a player has three squares in the same row, column, or diagonal or when all nine squares of the grid are full. Ties occur when neither player has three squares in the same row, column, or diagonal.")
 
 def getMove(player):
     move = ' '
-    while move not in '1 2 3 4 5 6 7 8 9'.split():
+    while move not in '0 1 2 3 4 5 6 7 8'.split():
         print("Where would you like to move, %s" %(player))
         move = input()
     return int(move)-1
@@ -48,3 +60,36 @@ def playAgain():
     return input().lower().startswith('y')
 
 while True:
+
+    print_rules()
+
+#assign player to be X or O
+
+#
+
+#Check if O is winner
+    if bd.checkWinner("O"):
+        print("\nO is the winner!\n"
+        if play_again = "y":
+            bd.reset()
+            continue
+         else:
+            break
+
+#Check if X is winner
+    if bd.checkWinner("X"):
+        print("\nX is the winner!\n"
+        if play_again = "y":
+            bd.reset()
+            continue
+         else:
+            break
+
+#Check for a tie
+    if bd.checkTie():
+        print("\nYou tied!\n")
+        if play_again = "y":
+            bd.reset()
+            continue
+         else:
+            break
