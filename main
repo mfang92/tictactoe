@@ -70,21 +70,18 @@ while True:
         print_rules()
         firstTime=False
     bd.display()
-    
+
 #ask for moves & change the board for each player
     moveX = getMove("X")
     bd.update("X", moveX)
-
     bd.display()
-    moveO = getMove("O")
-    bd.update("O", moveO)
 
-#Check if O is winner
-    if bd.checkWinner("O"):
-        print("\nO is the winner!\n")
+#Check for a tie
+    if bd.checkTie():
+        print("\nYou tied!\n")
         if playAgain():
             bd.reset()
-            firstTime=True
+            firstTime = True
             continue
         else:
             break
@@ -99,12 +96,18 @@ while True:
         else:
             break
 
-#Check for a tie
-    if bd.checkTie():
-        print("\nYou tied!\n")
+#ask for moves & change the board for each player
+    moveO = getMove("O")
+    bd.update("O", moveO)
+    bd.display()
+
+#Check if O is winner
+    if bd.checkWinner("O"):
+        print("\nO is the winner!\n")
         if playAgain():
             bd.reset()
-            firstTime = True
+            firstTime=True
             continue
         else:
             break
+
