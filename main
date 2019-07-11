@@ -88,7 +88,7 @@ while True:
 #Check if X is winner
     if bd.checkWinner("X"):
         print("\nX is the winner!\n")
-        if playAgain():
+        if bd.playAgain():
             bd.reset()
             firstTime = True
             continue
