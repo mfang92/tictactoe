@@ -1,4 +1,4 @@
-class Board():
+class Board:
     def __init__(self):
         self.cells = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
@@ -51,9 +51,9 @@ class Board():
     def getMove(self, player):
         move = ' '
         while move not in '0 1 2 3 4 5 6 7 8'.split():
-            print("Where would you like to move, %s" %(player))
+            print("Where would you like to move, %s" % player)
             move = input()
-            if (bd.cells[int(move)] != ' '):
+            if self.cells[int(move)] != ' ':
                 move = ' '
         return int(move)
 
@@ -62,12 +62,14 @@ class Board():
         print('Would you like to play again? (y or n)')
         return input().lower().startswith('y')
 
+
 bd = Board()
+
 firstTime = True
 while True:
     if firstTime:
         bd.print_rules()
-        firstTime=False
+        firstTime = False
     bd.display()
 
 #ask for moves & change the board for each player
@@ -109,4 +111,3 @@ while True:
             continue
         else:
             break
-
